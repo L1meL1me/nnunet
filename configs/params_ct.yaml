@@ -1,0 +1,22 @@
+# Example CT settings. Confirm these choices in the study protocol before
+# extracting the final cohort.
+setting:
+  label: 1
+  normalize: false
+  binWidth: 25
+  resampledPixelSpacing: [1, 1, 1]
+  interpolator: sitkBSpline
+  padDistance: 10
+  minimumROIDimensions: 2
+
+imageType:
+  Original: {}
+
+featureClass:
+  shape: []
+  firstorder: []
+  glcm: []
+  glrlm: []
+  glszm: []
+  gldm: []
+  ngtdm: []

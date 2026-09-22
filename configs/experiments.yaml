@@ -1,0 +1,33 @@
+environment:
+  python: "3.10.20"
+  nnunetv2: "2.7.0"
+  torch: "2.6.0+cu124"
+  cuda_visible_devices_used: [0, 1, 2, 3]
+  server_root: /mnt/synology/ruihao.li
+  split_sha256: f4cbf6804e15aacb28d8ac274acc127b99aa71fd3b308da1ce80e370703c8863
+
+datasets:
+  3:
+    name: Dataset003_MyCT
+    channels: {0: CT}
+    cases: 900
+  4:
+    name: Dataset004_CTPET
+    channels: {0: CT, 1: PET}
+    cases: 900
+
+fold_0:
+  train: 720
+  validation: 180
+  validation_positive: 96
+  validation_negative: 84
+
+experiments:
+  - {dataset: 3, modality: CT, configuration: 2d, epochs: 500, batch_size: 32, patch_size: [512, 512], trainer: nnUNetTrainer_500epochs}
+  - {dataset: 3, modality: CT, configuration: 2d, epochs: 1000, batch_size: 32, patch_size: [512, 512], trainer: nnUNetTrainer}
+  - {dataset: 3, modality: CT, configuration: 3d_fullres, epochs: 500, batch_size: 4, patch_size: [160, 128, 112], trainer: nnUNetTrainer_500epochs}
+  - {dataset: 3, modality: CT, configuration: 3d_fullres, epochs: 1000, batch_size: 8, patch_size: [160, 128, 112], trainer: nnUNetTrainer}
+  - {dataset: 4, modality: CT+PET, configuration: 2d, epochs: 500, batch_size: 48, patch_size: [512, 512], trainer: nnUNetTrainer_500epochs}
+  - {dataset: 4, modality: CT+PET, configuration: 3d_fullres, epochs: 500, batch_size: 4, patch_size: [160, 128, 112], trainer: nnUNetTrainer_500epochs}
+  - {dataset: 4, modality: CT+PET, configuration: 3d_fullres, epochs: 1000, batch_size: 8, patch_size: [160, 128, 112], trainer: nnUNetTrainer}
+

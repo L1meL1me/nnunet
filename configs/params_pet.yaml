@@ -1,0 +1,22 @@
+# Example PET SUV settings. Do not use this file for raw counts or an nnU-Net
+# normalized PET image. Confirm bin width and spacing in the study protocol.
+setting:
+  label: 1
+  normalize: false
+  binWidth: 0.25
+  resampledPixelSpacing: [2, 2, 2]
+  interpolator: sitkBSpline
+  padDistance: 10
+  minimumROIDimensions: 2
+
+imageType:
+  Original: {}
+
+featureClass:
+  shape: []
+  firstorder: []
+  glcm: []
+  glrlm: []
+  glszm: []
+  gldm: []
+  ngtdm: []
